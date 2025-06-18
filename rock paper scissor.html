@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+        
+        function getComputerChoice(){
+            let computerMove;
+            let random =Math.floor( Math.random()*4);
+            if(random >=1){
+                computerMove = 'rock'
+            }else if(random >=2){
+                computerMove = 'paper'
+            }else{
+                computerMove = 'scissor'
+            }
+            return computerMove;
+        }
+        getComputerChoice();
+        function getHumanChoice(){
+            let HumanMove = prompt("choose your wepon");
+            return HumanMove;
+        }
+       function playGame(){
+         let humanScore = 0;
+         let computerScore = 0;
+         function PlayRound(computerChoice, humanChoice){
+                computerChoice = computerChoice.toLowerCase();
+                humanChoice = humanChoice.toLowerCase();
+              if(
+            humanChoice === 'rock' && computerChoice === 'scissors' || 
+            humanChoice === 'paper' && computerChoice === 'rock' ||
+            humanChoice === 'scissors' && computerChoice === 'paper'
+            ) {
+                console.log(`You win! ${humanChoice} beats ${computerChoice}`)
+                humanScore++
+            }else if(computerChoice === humanChoice){
+                console.log('Tie')
+            }else{
+                console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
+                computerScore++
+            }
+            
+            
+        }
+        for(let i = 0; i < 5; i++){
+            let computerChoice = getComputerChoice();
+            let humanChoice = getHumanChoice();
+            PlayRound(computerChoice, humanChoice);
+        }
+        if(computerScore > humanScore){
+            console.log(`computer beats human ${computerScore} to ${humanScore}`)
+        }else{
+            console.log(`human beats computer ${humanScore} to ${computerScore}`)
+        }
+       }
+       playGame();
+    </script>
+</body>
+</html>
